@@ -1,0 +1,397 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Hotel Open API",
+        "description": "Hotel API's",
+        "contact": {
+            "email": "laksamana.arya1412@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register API's",
+                "description": "Get a JWT via given credentials.",
+                "operationId": "0903f2e0df1a8857bee538fc055417f0",
+                "requestBody": {
+                    "description": "- Register to your account",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "email"
+                                    },
+                                    "password": {
+                                        "type": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Succesfully Login"
+                    },
+                    "201": {
+                        "description": "Succesfully Login"
+                    },
+                    "419": {
+                        "description": "Unauthorhized"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login API's",
+                "description": "Get a JWT via given credentials.",
+                "operationId": "2dd578ff7aba2721293dac66833b27d1",
+                "requestBody": {
+                    "description": "- Login to add products",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "email"
+                                    },
+                                    "password": {
+                                        "type": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Succesfully Login"
+                    },
+                    "201": {
+                        "description": "Succesfully Login"
+                    },
+                    "419": {
+                        "description": "Unauthorhized"
+                    }
+                }
+            }
+        },
+        "/hotels/categories": {
+            "get": {
+                "tags": [
+                    "Hotel Category"
+                ],
+                "summary": "Show all Categories",
+                "description": "Show All Categories",
+                "operationId": "ShowAllCategories",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Hotel Category"
+                ],
+                "summary": "Create new hotel categories",
+                "description": "Get a JWT via given credentials.",
+                "operationId": "5795a0255bf8cb6c77e0fa3764b559a1",
+                "requestBody": {
+                    "description": "- Create new hotel categories",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "categories_name": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "integer"
+                                    },
+                                    "capacity": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "get token"
+                    }
+                }
+            }
+        },
+        "/hotels/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Hotel Category"
+                ],
+                "summary": "Show Categories room list",
+                "description": "Show All Categories Room list",
+                "operationId": "ShowAllCategoriesRoomlist",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Categories id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/hotels": {
+            "get": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Get list of hotel",
+                "description": "Get list of hotel",
+                "operationId": "ShowAllHotel",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Create new hotel",
+                "description": "Get a JWT via given credentials.",
+                "operationId": "c1cbc2652ea15a2c9bfd3c1f25f626f3",
+                "requestBody": {
+                    "description": "- Create new hotel",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "hotel_name": {
+                                        "type": "string",
+                                        "example": "Savana"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "example": "Malang"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Hotel-Description-Example"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "get token"
+                    }
+                }
+            }
+        },
+        "/hotels/{id}": {
+            "get": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Show specific hotel",
+                "description": "Show specific hotel",
+                "operationId": "ShowSpecificHotel",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Hotel id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Update hotel",
+                "operationId": "cc2283757f80f315975e0905e7f22f64",
+                "requestBody": {
+                    "description": "- Update hotel",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "hotel_name": {
+                                        "type": "string"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "get token"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Hotel"
+                ],
+                "summary": "Delete Hotel",
+                "description": "Delete Hotel",
+                "operationId": "deleteHotel",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/hotels/rooms": {
+            "get": {
+                "tags": [
+                    "Hotel Room"
+                ],
+                "summary": "Show all Rooms",
+                "description": "Show All Rooms",
+                "operationId": "ShowAllRooms",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Hotel Room"
+                ],
+                "summary": "Create hotel room",
+                "description": "Get a JWT via given credentials.",
+                "operationId": "4cb9c7ffd2be9abb9682ac3566262afe",
+                "requestBody": {
+                    "description": "- Create new hotel room",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "capacity": {
+                                        "type": "integer",
+                                        "example": "10"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "double",
+                                        "example": "10000"
+                                    },
+                                    "facilities": {
+                                        "type": "longText",
+                                        "example": "Hotel-Description-Example"
+                                    },
+                                    "rooms_number": {
+                                        "type": "integer",
+                                        "example": "14"
+                                    },
+                                    "categories_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "get token"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Hotel API",
+            "description": "Hotel API Test"
+        }
+    ]
+}

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->dateTime('date_from');
             $table->dateTime('date_to');
             $table->integer('no_telf');
+            $table->unsignedBigInteger('rooms_id')->references('rooms_id')->on('rooms');
+            $table->unsignedBigInteger('hotel_id')->references('hotel_id')->on('hotels');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
     "servers": [
         {
             "url": "http://127.0.0.1:8000/api",
-            "description": "Demo API Server"
+            "description": "Demo HOTEL API Server"
         }
     ],
     "paths": {
@@ -109,6 +109,105 @@
                 }
             }
         },
+        "/hotels/booking": {
+            "get": {
+                "tags": [
+                    "Hotel Booking"
+                ],
+                "summary": "Get all list of hotel booking",
+                "description": "Get list of hotel booking",
+                "operationId": "ShowAllHotelBooking",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Hotel Booking"
+                ],
+                "summary": "Booking Hotel",
+                "description": "Get a JWT via given credentials.",
+                "operationId": "04bbfd5186a39a83027456d64d0f0280",
+                "requestBody": {
+                    "description": "- Booking hotel",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_depan": {
+                                        "type": "string",
+                                        "example": "Laksamana"
+                                    },
+                                    "nama_belakang": {
+                                        "type": "string",
+                                        "example": "AryaPutra"
+                                    },
+                                    "alamat_email": {
+                                        "type": "string",
+                                        "example": "laksamana.arya1412@gmail.com"
+                                    },
+                                    "date_from": {
+                                        "type": "timestamp",
+                                        "example": "2020-09-14 23:18:17"
+                                    },
+                                    "date_to": {
+                                        "type": "timestamp",
+                                        "example": "2020-09-14 23:18:17"
+                                    },
+                                    "no_telf": {
+                                        "type": "integer",
+                                        "example": "0812345678"
+                                    },
+                                    "rooms_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "hotel_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "get token"
+                    }
+                }
+            }
+        },
+        "/hotels/booking/{hotel_id}": {
+            "get": {
+                "tags": [
+                    "Hotel Booking"
+                ],
+                "summary": "displays a booking in spesific hotel",
+                "description": "Show All Categories Room list",
+                "operationId": "ShowHotelRoomBooking",
+                "parameters": [
+                    {
+                        "name": "hotel_id",
+                        "in": "path",
+                        "description": "Categories id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/hotels/categories": {
             "get": {
                 "tags": [
@@ -138,13 +237,24 @@
                             "schema": {
                                 "properties": {
                                     "categories_name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Luxury"
                                     },
                                     "price": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": "14000"
                                     },
                                     "capacity": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": "10"
+                                    },
+                                    "description": {
+                                        "type": "longText",
+                                        "example": "Luxury-Description"
+                                    },
+                                    "hotel_id": {
+                                        "type": "integer",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -159,7 +269,7 @@
                 }
             }
         },
-        "/hotels/categories/{id}": {
+        "/hotels/categories/{categories_id}": {
             "get": {
                 "tags": [
                     "Hotel Category"
@@ -169,9 +279,35 @@
                 "operationId": "ShowAllCategoriesRoomlist",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "categories_id",
                         "in": "path",
                         "description": "Categories id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/hotels/{hotel_id}": {
+            "get": {
+                "tags": [
+                    "Hotel Category"
+                ],
+                "summary": "Show hotel Categories",
+                "description": "Show hotel categories",
+                "operationId": "ShowHotelCategories",
+                "parameters": [
+                    {
+                        "name": "hotel_id",
+                        "in": "path",
+                        "description": "Hotel id",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -364,11 +500,7 @@
                                     },
                                     "facilities": {
                                         "type": "longText",
-                                        "example": "Hotel-Description-Example"
-                                    },
-                                    "rooms_number": {
-                                        "type": "integer",
-                                        "example": "14"
+                                        "example": "Hotel-Facilities-Example"
                                     },
                                     "categories_id": {
                                         "type": "integer",

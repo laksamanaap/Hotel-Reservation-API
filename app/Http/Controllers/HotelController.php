@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotel;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -174,5 +175,6 @@ public function show(string $id) {
         return Hotel::all();
     }
 
+    
 
 }

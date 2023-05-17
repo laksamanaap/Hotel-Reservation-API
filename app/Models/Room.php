@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Room extends Model
 {
     use HasFactory;
+    protected $table = 'rooms';
+    protected $primaryKey = 'rooms_id';
     protected $guarded = [];
 
     public function categories() :BelongsTo

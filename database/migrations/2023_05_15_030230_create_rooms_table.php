@@ -16,8 +16,9 @@ return new class extends Migration
             $table->integer('capacity');
             $table->double('price');
             $table->longText('facilities');
-            $table->integer('rooms_number');
+            // $table->integer('rooms_number');
             $table->unsignedBigInteger('categories_id')->references('categories_id')->on('categories');
+            $table->unsignedBigInteger('room_status_id')->references('room_status_id')->on('room_statuses')->default('1');
             $table->timestamps();
 
         });

@@ -22,8 +22,7 @@ class RoomController extends Controller
  *              type="object",
  *              @OA\Property(property="capacity", type="integer", example="10"),
  *              @OA\Property(property="price", type="double", example="10000"),
- *              @OA\Property(property="facilities", type="longText", example="Hotel-Description-Example"),
- *              @OA\Property(property="rooms_number", type="integer", example="14"),
+ *              @OA\Property(property="facilities", type="longText", example="Hotel-Facilities-Example"),
  *              @OA\Property(property="categories_id", type="integer", example="1")
  *              
  *            
@@ -43,7 +42,6 @@ public function store(Request $request)
         'capacity' => 'required',
         'price' => 'required',
         'facilities' => 'required',
-        'rooms_number' => 'required',
         'categories_id' => 'required',
 
     ]);

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('categories_name'); 
             $table->double('price');
             $table->integer('capacity');
+            $table->longText('description');
+            $table->unsignedBigInteger('hotel_id')->references('hotel_id')->on('hotels');
             $table->timestamps();
 
         });

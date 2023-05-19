@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Room extends Model
 {
@@ -18,4 +19,13 @@ class Room extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function bookings() :BelongsTo
+    {
+        return $this->belongsTo(Booking::class);
+    }
+
+    public function room_statuses() :HasOne
+    {
+        return $this->hasOne(RoomStatus::class);
+    }
 }

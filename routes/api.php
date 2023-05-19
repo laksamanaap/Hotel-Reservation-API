@@ -3,9 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CategoryController;
 
 /*
@@ -18,6 +19,15 @@ use App\Http\Controllers\CategoryController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+// Hotel Payment
+Route::post('/hotels/payment', [PaymentController::class, 'store']);
+
+Route::get('/hotels/payment', [PaymentController::class, 'index']);
+
+Route::get('/hotels/payment/{payment_type_id}', [PaymentController::class, 'show']);
+
+// Hotel Payment
 
 // Booking API
 Route::post('/hotels/booking', [BookingController::class, 'store']);

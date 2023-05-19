@@ -461,6 +461,89 @@
                 }
             }
         },
+        "/hotels/payment": {
+            "get": {
+                "tags": [
+                    "Hotel Payment"
+                ],
+                "summary": "Get all list of Hotel Payment",
+                "description": "Get list of Hotel Payment",
+                "operationId": "ShowAllHotelPayment",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Hotel Payment"
+                ],
+                "summary": "Hotel Payment",
+                "description": "Get a JWT via given credentials.",
+                "operationId": "f9ce3f31c8790536fd2d36e10fc0ae69",
+                "requestBody": {
+                    "description": "- Hotel Payment",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "dateTime",
+                                        "example": "2020-09-14 23:18:17"
+                                    },
+                                    "rooms_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "hotel_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "payment_type_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "get token"
+                    }
+                }
+            }
+        },
+        "/hotels/payment/{payment_type_id}": {
+            "get": {
+                "tags": [
+                    "Hotel Payment"
+                ],
+                "summary": "Displays payments by payment type",
+                "description": "Show payments by payment type",
+                "operationId": "ShowPaymentTypeByID",
+                "parameters": [
+                    {
+                        "name": "payment_type_id",
+                        "in": "path",
+                        "description": "payment type id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/hotels/rooms": {
             "get": {
                 "tags": [

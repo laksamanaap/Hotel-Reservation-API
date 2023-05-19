@@ -111,8 +111,8 @@ class AuthController extends Controller
 
         if (!$User || !Hash::check($formField['password'], $User->password)) {
             return response([
-                'message' => 'Laksamana'
-            ], 401);
+                'message' => 'Unauthorized'
+            ], 401); // Message when failed to login
         }
 
         $token = $User->createToken('myAppToken')->plainTextToken;
@@ -120,7 +120,7 @@ class AuthController extends Controller
         $response = [
             'User' => $User,
             'token' => $token
-        ];
+        ]; 
         
         return response($response, 201);
     }

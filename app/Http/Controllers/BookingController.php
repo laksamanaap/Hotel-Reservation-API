@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\Hotel;
 use App\Models\Booking;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ class BookingController extends Controller
  *
  * @return \Illuminate\Http\JsonResponse
  */
-public function store(Request $request)
+public function store(Request $request, $id)
 {
     $request->validate([
         'nama_depan' => 'required',
@@ -55,7 +56,23 @@ public function store(Request $request)
         'hotel_id' => 'required',
     ]);
 
+    // $requestData = $request->only([
+    //     'rooms_id',
+    // ]);
+
+    // $rooms_id = $requestData['rooms_id'];
+
+    // if ($rooms_id == 1) { // Room availabe (kosong)
+    //     $Booking = Booking::create($request->all());
+    //     return $Booking;
+    // } elseif ($rooms_id == 2) { // Room
+    //     return response()->json([
+    //         'message' => 'Room has already booked!'
+    //     ],401);
+    // }
+
     $Booking = Booking::create($request->all());
+    return $Booking;
 
 }
 

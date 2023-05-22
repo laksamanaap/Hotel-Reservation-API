@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\Hotel;
 use App\Models\Booking;
+use App\Models\RoomStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -43,7 +44,7 @@ class BookingController extends Controller
  *
  * @return \Illuminate\Http\JsonResponse
  */
-public function store(Request $request, $id)
+public function store(Request $request)
 {
     $request->validate([
         'nama_depan' => 'required',
@@ -56,23 +57,48 @@ public function store(Request $request, $id)
         'hotel_id' => 'required',
     ]);
 
-    // $requestData = $request->only([
-    //     'rooms_id',
-    // ]);
+    // Get rooms id
+    $requestData = $request->only([
+        'rooms_id',
+    ]);
 
-    // $rooms_id = $requestData['rooms_id'];
+    $rooms_id = $requestData['rooms_id'];
 
-    // if ($rooms_id == 1) { // Room availabe (kosong)
-    //     $Booking = Booking::create($request->all());
-    //     return $Booking;
-    // } elseif ($rooms_id == 2) { // Room
-    //     return response()->json([
-    //         'message' => 'Room has already booked!'
-    //     ],401);
-    // }
+    $checkDataRoom = Room::leftJoin('room_statuses', 'room_statuses.rooms_id','=',
+        'rooms.rooms_id')
+        ->where('rooms.rooms_id', $rooms_id)
+        ->get();
 
-    $Booking = Booking::create($request->all());
-    return $Booking;
+        // return response($checkDataRoom);
+
+        foreach($checkDataRoom as $roomstatus) {
+        if ($roomstatus->room_status_id == 1 || $roomstatus->room_status_id == null) { // Room availabe (kosong)
+            
+            $room_statuses = RoomStatus::create([
+                'rooms_id' => $rooms_id,
+                'room_status_id' => 2,
+                'room_status' => 'Booked!',
+                'description' => 'Has been booked'
+
+            ]);
+        
+            $Booking = Booking::create($request->all());
+
+        return response()->json([
+            'data' => $Booking,
+            'message' => 'Success'
+        ],200);
+
+        } elseif ($roomstatus->room_status_id == 2) { // Room
+            return response()->json([
+                'message' => 'Already Booked!' // testing purposes  
+            ], 419);
+        }        
+        }
+
+    
+
+    
 
 }
 

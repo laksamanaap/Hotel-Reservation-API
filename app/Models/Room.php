@@ -26,6 +26,6 @@ class Room extends Model
 
     public function room_statuses() :HasOne
     {
-        return $this->hasOne(RoomStatus::class);
+        return $this->hasOne(RoomStatus::class, 'rooms_id', 'rooms_id');
     }
 }

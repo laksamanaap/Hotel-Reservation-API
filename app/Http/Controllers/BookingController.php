@@ -77,8 +77,8 @@ public function store(Request $request)
             $room_statuses = RoomStatus::create([
                 'rooms_id' => $rooms_id,
                 'room_status_id' => 2,
-                'room_status' => 'Booked!',
-                'description' => 'Has been booked'
+                'room_status' => 'Not Available (Booked)',
+                'description' => 'the room has been booked by another guest!'
 
             ]);
         

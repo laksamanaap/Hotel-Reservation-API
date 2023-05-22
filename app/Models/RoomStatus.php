@@ -11,6 +11,7 @@ class RoomStatus extends Model
     use HasFactory;
 
     protected $table = 'room_statuses';
+    protected $primaryKey = 'rooms_id';
     protected $guarded = [];
 
     public function rooms(): BelongsTo

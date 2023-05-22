@@ -8,6 +8,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RoomStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ use App\Http\Controllers\CategoryController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+
 
 // Hotel Payment
 Route::post('/hotels/payment', [PaymentController::class, 'store']);
@@ -41,6 +44,10 @@ Route::get('/hotels/booking/{hotel_id}', [BookingController::class, 'bookings'])
 Route::post('/hotels/rooms', [RoomController::class, 'store']);
 
 Route::get('/hotels/rooms', [RoomController::class, 'index']);
+
+Route::get('/hotels/roomstatus/{rooms_id}', [RoomStatusController::class, 'showRoomStatus']);
+
+Route::put('/hotels/roomstatus/{rooms_id}', [RoomStatusController::class, 'update']);
 // Room API
 
 // Categories API
@@ -73,6 +80,7 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 // Auth API
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

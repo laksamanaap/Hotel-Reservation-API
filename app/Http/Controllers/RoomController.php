@@ -69,4 +69,7 @@ public function store(Request $request)
         return Room::all();
 
     }
+
+
+    
 }

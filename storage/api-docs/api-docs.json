@@ -601,6 +601,73 @@
                     }
                 }
             }
+        },
+        "/hotels/roomstatus/{rooms_id}": {
+            "get": {
+                "tags": [
+                    "Hotel Room Status"
+                ],
+                "summary": "Check room status by id",
+                "description": "Check room status by id",
+                "operationId": "ShowRoomStatusFromRoomID",
+                "parameters": [
+                    {
+                        "name": "rooms_id",
+                        "in": "path",
+                        "description": "rooms_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Hotel Room Status"
+                ],
+                "summary": "Update hotel",
+                "operationId": "f5f582b540075b7f45b48b8c9b7c2958",
+                "requestBody": {
+                    "description": "- Update hotel",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "rooms_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "room_status_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "room_status": {
+                                        "type": "varchar",
+                                        "example": "Available"
+                                    },
+                                    "description": {
+                                        "type": "varchar",
+                                        "example": "Room is available"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "get token"
+                    }
+                }
+            }
         }
     },
     "tags": [

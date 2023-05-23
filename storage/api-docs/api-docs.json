@@ -588,6 +588,10 @@
                                     "categories_id": {
                                         "type": "integer",
                                         "example": "1"
+                                    },
+                                    "hotel_id": {
+                                        "type": "integer",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -627,44 +631,27 @@
                     }
                 }
             },
-            "put": {
+            "delete": {
                 "tags": [
                     "Hotel Room Status"
                 ],
-                "summary": "Update hotel",
-                "operationId": "f5f582b540075b7f45b48b8c9b7c2958",
-                "requestBody": {
-                    "description": "- Update hotel",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "rooms_id": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    },
-                                    "room_status_id": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    },
-                                    "room_status": {
-                                        "type": "varchar",
-                                        "example": "Available"
-                                    },
-                                    "description": {
-                                        "type": "varchar",
-                                        "example": "Room is available"
-                                    }
-                                },
-                                "type": "object"
-                            }
+                "summary": "Check Out and Change room available",
+                "description": "Delete Hotel",
+                "operationId": "CheckOut",
+                "parameters": [
+                    {
+                        "name": "rooms_id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
                         }
                     }
-                },
+                ],
                 "responses": {
-                    "200": {
-                        "description": "get token"
+                    "default": {
+                        "description": "successful operation"
                     }
                 }
             }

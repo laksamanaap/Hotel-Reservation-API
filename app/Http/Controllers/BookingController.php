@@ -60,9 +60,12 @@ public function store(Request $request)
     // Get rooms id
     $requestData = $request->only([
         'rooms_id',
+        'hotel_id'
     ]);
 
     $rooms_id = $requestData['rooms_id'];
+    $hotel_id = $requestData['hotel_id'];
+
 
     $checkDataRoom = Room::leftJoin('room_statuses', 'room_statuses.rooms_id','=',
         'rooms.rooms_id')
@@ -76,8 +79,9 @@ public function store(Request $request)
             
             $room_statuses = RoomStatus::create([
                 'rooms_id' => $rooms_id,
+                'hotel_id' => $hotel_id,
                 'room_status_id' => 2,
-                'room_status' => 'Not Available (Booked)',
+                'room_status' => 'Not Available (Has been booked)',
                 'description' => 'the room has been booked by another guest!'
 
             ]);
@@ -86,7 +90,8 @@ public function store(Request $request)
 
         return response()->json([
             'data' => $Booking,
-            'message' => 'Success'
+            'Booking Information' => $room_statuses,
+            'message' => 'Successful booking'
         ],200);
 
         } elseif ($roomstatus->room_status_id == 2) { // Room

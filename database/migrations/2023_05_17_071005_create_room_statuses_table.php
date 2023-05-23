@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('room_statuses', function (Blueprint $table) {
             $table->id('rooms_id')->references('rooms_id')->on('rooms');
+            $table->unsignedBigInteger('hotel_id')->references('hotel_id')->on('hotels');
             $table->unsignedBigInteger('room_status_id');
             $table->string('room_status');
             $table->longText('description');
@@ -25,6 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('room_statuses');
+        Schema::create('room_statuses', function (Blueprint $table) {
+            $table->dropColumn('hotel_id');
+        });
     }
 };

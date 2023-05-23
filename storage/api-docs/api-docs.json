@@ -606,13 +606,39 @@
                 }
             }
         },
+        "/hotels/rooms/{hotel_id}": {
+            "get": {
+                "tags": [
+                    "Hotel Room"
+                ],
+                "summary": "Show hotel room list",
+                "description": "Show hotel room list",
+                "operationId": "ShowHotelRoomList",
+                "parameters": [
+                    {
+                        "name": "hotel_id",
+                        "in": "path",
+                        "description": "hotel_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/hotels/roomstatus/{rooms_id}": {
             "get": {
                 "tags": [
                     "Hotel Room Status"
                 ],
                 "summary": "Check room status by id",
-                "description": "Check room status by id",
+                "description": "- Check room status by id <br>\r\n    *      - NULL (Room Available)",
                 "operationId": "ShowRoomStatusFromRoomID",
                 "parameters": [
                     {
@@ -635,7 +661,7 @@
                 "tags": [
                     "Hotel Room Status"
                 ],
-                "summary": "Check Out and Change room available",
+                "summary": "Check Out and Change status room booked to available",
                 "description": "Delete Hotel",
                 "operationId": "CheckOut",
                 "parameters": [

@@ -14,7 +14,8 @@ class RoomStatusController extends Controller
      *     path="/hotels/roomstatus/{rooms_id}",
      *     tags={"Hotel Room Status"},
      *     summary="Check room status by id",
-     *     description="Check room status by id",
+     *     description="- Check room status by id <br>
+    *      - NULL (Room Available)",
      *     operationId="ShowRoomStatusFromRoomID",
      *    
      * 
@@ -106,11 +107,11 @@ class RoomStatusController extends Controller
     
 //      }
      
-         /**
+/**
      * @OA\Delete(
      *     path="/hotels/roomstatus/{rooms_id}",
      *     tags={"Hotel Room Status"},
-     *     summary="Check Out and Change room available",
+     *     summary="Check Out and Change status room booked to available",
      *     description="Delete Hotel",
      *     operationId="CheckOut",
      *     
@@ -130,7 +131,7 @@ class RoomStatusController extends Controller
      *         description="successful operation"
      *     )
      * )
-     */
+*/
     public function destroy($id)
     {
         $Destroy = RoomStatus::destroy($id);
@@ -140,5 +141,7 @@ class RoomStatusController extends Controller
             'message' => 'Checkout Success!, Room status already changed!'
         ]);
     }
+
+
     
 }

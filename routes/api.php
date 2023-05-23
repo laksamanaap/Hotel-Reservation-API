@@ -45,6 +45,8 @@ Route::post('/hotels/rooms', [RoomController::class, 'store']);
 
 Route::get('/hotels/rooms', [RoomController::class, 'index']);
 
+Route::get('/hotels/rooms/{hotel_id}', [RoomController::class, 'showHotelRooms']);
+
 Route::get('/hotels/roomstatus/{rooms_id}', [RoomStatusController::class, 'showRoomStatus']);
 
 Route::put('/hotels/roomstatus/{rooms_id}', [RoomStatusController::class, 'update']);

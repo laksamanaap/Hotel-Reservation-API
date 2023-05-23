@@ -28,4 +28,9 @@ class Room extends Model
     {
         return $this->hasOne(RoomStatus::class, 'rooms_id', 'rooms_id');
     }
+
+    public function hotels() :BelongsTo
+    {
+        return $this->belongsTo(Hotel::class);
+    }
 }

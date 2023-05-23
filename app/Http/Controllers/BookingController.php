@@ -60,12 +60,15 @@ public function store(Request $request)
     // Get rooms id
     $requestData = $request->only([
         'rooms_id',
-        'hotel_id'
+        'hotel_id',
+        'nama_depan',
+        'nama_belakang'
     ]);
 
     $rooms_id = $requestData['rooms_id'];
     $hotel_id = $requestData['hotel_id'];
-
+    $nama_depan = $requestData['nama_depan'];
+    $nama_belakang = $requestData['nama_belakang'];
 
     $checkDataRoom = Room::leftJoin('room_statuses', 'room_statuses.rooms_id','=',
         'rooms.rooms_id')
@@ -77,7 +80,7 @@ public function store(Request $request)
         foreach($checkDataRoom as $roomstatus) {
         if ($roomstatus->room_status_id == 1 || $roomstatus->room_status_id == null) { // Room availabe (kosong)
             
-            $room_statuses = RoomStatus::create([
+        $room_statuses = RoomStatus::create([
                 'rooms_id' => $rooms_id,
                 'hotel_id' => $hotel_id,
                 'room_status_id' => 2,
@@ -86,7 +89,7 @@ public function store(Request $request)
 
             ]);
         
-            $Booking = Booking::create($request->all());
+        $Booking = Booking::create($request->all());
 
         return response()->json([
             'data' => $Booking,
@@ -96,9 +99,13 @@ public function store(Request $request)
 
         } elseif ($roomstatus->room_status_id == 2) { // Room
             return response()->json([
-                'message' => 'Already Booked!' // testing purposes  
+                'message' => 'The room has been booked by '.$nama_depan.' '. $nama_belakang.'!' 
             ], 419);
-        }        
+        } elseif ($roomstatus->rooms_id == $rooms_id) {
+            return response()->json([
+                'message' => 'The room has been booked by '.$nama_depan.' '. $nama_belakang.'!' 
+            ], 419);
+        }
         }
 
     
